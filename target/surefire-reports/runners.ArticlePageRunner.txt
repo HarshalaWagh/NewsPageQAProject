@@ -1,0 +1,27 @@
+-------------------------------------------------------------------------------
+Test set: runners.ArticlePageRunner
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 77.37 s <<< FAILURE! -- in runners.ArticlePageRunner
+CryptoNews article - high priority functional checks.Google News follow is available and points to a valid Google News URL -- Time elapsed: 7.787 s <<< ERROR!
+io.cucumber.junit.platform.engine.UndefinedStepException: 
+The step 'I open the Google News follow link' is undefined.
+You can implement this step using the snippet(s) below:
+
+@When("I open the Google News follow link")
+public void i_open_the_google_news_follow_link() {
+    // Write code here that turns the phrase above into concrete actions
+    throw new io.cucumber.java.PendingException();
+}
+
+	at io.cucumber.core.runtime.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:69)
+	at io.cucumber.junit.platform.engine.TestCaseResultObserver.assertTestCasePassed(TestCaseResultObserver.java:22)
+	at io.cucumber.junit.platform.engine.CucumberEngineExecutionContext.lambda$runTestCase$4(CucumberEngineExecutionContext.java:114)
+	at io.cucumber.core.runtime.CucumberExecutionContext.lambda$runTestCase$5(CucumberExecutionContext.java:137)
+	at io.cucumber.core.runtime.RethrowingThrowableCollector.executeAndThrow(RethrowingThrowableCollector.java:23)
+	at io.cucumber.core.runtime.CucumberExecutionContext.runTestCase(CucumberExecutionContext.java:137)
+	at io.cucumber.junit.platform.engine.CucumberEngineExecutionContext.runTestCase(CucumberEngineExecutionContext.java:109)
+	at io.cucumber.junit.platform.engine.NodeDescriptor$PickleDescriptor.execute(NodeDescriptor.java:168)
+	at io.cucumber.junit.platform.engine.NodeDescriptor$PickleDescriptor.execute(NodeDescriptor.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+

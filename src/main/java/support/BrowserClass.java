@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.nio.file.Paths;
+import java.util.Locale;
 import java.util.UUID;
 
 public class BrowserClass {
@@ -13,17 +15,22 @@ public class BrowserClass {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
 
-        options.addArguments(
-                "--disable-notifications",
-                "--no-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-gpu",
-                "--window-size=1366,900",
-                "--user-data-dir=/tmp/chrome-" + UUID.randomUUID()
-        );
+        options.addArguments("--disable-notifications");
 
-        if (Boolean.parseBoolean(System.getProperty("HEADLESS", "true"))) {
-            options.addArguments("--headless=new");
+        // Use OS temp directory (works on Windows/Mac/Linux)
+        String tmp = System.getProperty("java.io.tmpdir");
+        options.addArguments("--user-data-dir=" + Paths.get(tmp, "chrome-" + UUID.randomUUID()));
+
+        // Headless toggle (default false so local behaves like before)
+        boolean headless = Boolean.parseBoolean(System.getProperty("HEADLESS", "false"));
+        if (headless) {
+            options.addArguments("--headless=new", "--window-size=1366,900");
+        }
+
+        // Harden only on Linux runners
+        String os = System.getProperty("os.name", "").toLowerCase(Locale.ROOT);
+        if (os.contains("linux")) {
+            options.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu");
         }
 
         return new ChromeDriver(options);
