@@ -11,8 +11,9 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("features") 
+@SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepdefinitions,hooks")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-report.html, rerun:target/failed_scenarios.txt")
 @ConfigurationParameter(key = FILTER_TAGS_PROPERTY_NAME, value = "@Sanity and @HighPriority")
-public class ArticlePageRunner {}
+public class ArticlePageRunner {
+}

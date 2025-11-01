@@ -31,22 +31,42 @@ jobs:
       - name: Run tests (headless)
         run: mvn -B -DHEADLESS=true clean test
 
-      # (Optional) list report files in logs for quick sanity check
-      - name: List report files
-        if: always()
-        run: |
-          echo "Listing target directory:"
-          ls -la target || true
-          echo "If cucumber-report.html exists, it will be uploaded in the next step."
-
-      # Upload the HTML report even if tests fail
-      - name: Upload Cucumber HTML report
+      # Upload Cucumber HTML report
+      - name: Upload Cucumber HTML Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-report
-          path: |
-            target/cucumber-report.html
-            target/**/*.png
+          name: cucumber-test-report
+          path: target/cucumber-report.html
+          retention-days: 30
           if-no-files-found: warn
-          retention-days: 7
+
+      # Upload Screenshots (if any tests failed)
+      - name: Upload Test Screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-screenshots
+          path: Screenshots/
+          retention-days: 30
+          if-no-files-found: ignore
+
+      # Upload Surefire test reports (XML and TXT)
+      - name: Upload Surefire Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          retention-days: 30
+          if-no-files-found: warn
+
+      # Upload failed scenarios rerun file
+      - name: Upload Failed Scenarios
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failed-scenarios
+          path: target/failed_scenarios.txt
+          retention-days: 30
+          if-no-files-found: ignore

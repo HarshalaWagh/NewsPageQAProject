@@ -1,0 +1,40 @@
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+*.class
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Screenshots (optional - you might want to keep some)
+Screenshots/
+*.png
+*.jpg
+
+# Logs
+*.log
+
+# Eclipse
+bin/
+.settings/
+.metadata/
+
+# VS Code
+.vscode/
+

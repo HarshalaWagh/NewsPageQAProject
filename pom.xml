@@ -8,7 +8,7 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <properties>
-    <maven.compiler.release>11</maven.compiler.release><!-- or 17 if you use JDK 17 -->
+    <maven.compiler.release>17</maven.compiler.release><!-- Updated to match GitHub Actions -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <cucumber.version>7.14.0</cucumber.version>
@@ -113,7 +113,7 @@
         <version>3.2.5</version>
         <configuration>
           <includes>
-            <include>**/CucumberTestSuite.java</include>
+            <include>**/ArticlePageRunner.java</include>
           </includes>
         </configuration>
       </plugin>

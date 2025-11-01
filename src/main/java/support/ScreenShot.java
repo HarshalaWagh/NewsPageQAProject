@@ -9,11 +9,24 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.io.FileHandler;
 
 public class ScreenShot {
-	
-	public static void ScreenShotMethod(WebDriver driver,String name) throws IOException{
+
+	public static void ScreenShotMethod(WebDriver driver, String name) throws IOException {
+		File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		
-		File source=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		File dest=new File("C:\\Users\\harsh\\eclipse-workspace\\KiteZerodha\\Screenshots\\"+name+".png");
-		FileHandler.copy(source,dest) ;
+		// Use project root directory to create Screenshots folder
+		String projectRoot = System.getProperty("user.dir");
+		File screenshotsDir = new File(projectRoot, "Screenshots");
+		
+		// Create directory if it doesn't exist
+		if (!screenshotsDir.exists()) {
+			screenshotsDir.mkdirs();
+		}
+		
+		// Screenshot filename to remove invalid characters for file system
+		String screenshotName = name.replaceAll("[^a-zA-Z0-9._-]", "_");
+		File dest = new File(screenshotsDir, screenshotName + ".png");
+		
+		FileHandler.copy(source, dest);
+		System.out.println("Screenshot saved to: " + dest.getAbsolutePath());
 	}
 }
